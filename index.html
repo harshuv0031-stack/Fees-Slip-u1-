@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H.A Coaching Centre - Digital Fees Slip</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+    <!-- FORM SECTION -->
+    <section class="form-box">
+        <div class="heading">
+            
+            <img src="logo.png" alt="H.A Coaching Centre Logo" class="permanent-logo">
+            <h1>H.A Coaching Centre</h1>
+            <p>Digital Fees Slip</p>
+        </div>
+
+        <div class="form-grid">
+            <div class="field full">
+                <label for="studentName">Student Name</label>
+                <input type="text" id="studentName" placeholder="Enter student's name" autocomplete="name">
+            </div>
+
+            <div class="field">
+                <label for="rollNo">Roll No.</label>
+                <input type="text" id="rollNo" placeholder="Enter roll number">
+            </div>
+
+            <div class="field">
+                <label for="date">Payment Date</label>
+                <input type="date" id="date">
+            </div>
+
+            <div class="field">
+                <label for="validUntil">Valid Until</label>
+                <input type="date" id="validUntil">
+            </div>
+
+            <div class="field">
+                <label for="monthlyFees">Monthly Fees (₹)</label>
+                <input type="number" id="monthlyFees" min="0" step="0.01" placeholder="Enter monthly fees">
+            </div>
+
+            <div class="field">
+                <label for="externalCharge">External Charge (₹)</label>
+                <input type="number" id="externalCharge" min="0" step="0.01" placeholder="Enter external charge">
+            </div>
+
+            <div class="field">
+                <label for="pendingFees">Pending Fees (₹)</label>
+                <input type="number" id="pendingFees" min="0" step="0.01" placeholder="Previous pending fees">
+            </div>
+
+            <div class="field">
+                <label for="submittedFees">Submitted Fees (₹)</label>
+                <input type="number" id="submittedFees" min="0" step="0.01" placeholder="Amount submitted now">
+            </div>
+        </div>
+
+        <div class="calculation-preview">
+            <div><span>Total Payable</span><strong id="previewTotal">₹ 0.00</strong></div>
+            <div><span>Remaining Pending</span><strong id="previewRemaining">₹ 0.00</strong></div>
+        </div>
+
+        <div class="buttons">
+            <button class="generate" type="button" onclick="generateSlip()">Generate Fees Slip</button>
+            <button class="reset" type="button" onclick="resetForm()">Reset</button>
+        </div>
+    </section>
+
+    <!-- FEES SLIP -->
+    <section class="slip" id="feesSlip">
+        <div class="slip-header">
+            <div class="slip-brand">
+                <div class="slip-logo-wrap" id="slipLogoWrap" hidden>
+                    <img id="slipLogo" alt="Coaching Logo">
+                </div>
+                <div>
+                    <h2>H.A Coaching Centre</h2>
+                    <p>Quality Education • Better Future</p>
+                </div>
+            </div>
+            <div class="receipt-title">DIGITAL FEES SLIP</div>
+        </div>
+
+        <div class="student-details">
+            <div class="detail-row"><div class="label">Student Name</div><div class="value" id="showName">-</div></div>
+            <div class="detail-row"><div class="label">Roll No.</div><div class="value" id="showRoll">-</div></div>
+            <div class="detail-row"><div class="label">Payment Date</div><div class="value" id="showDate">-</div></div>
+            <div class="detail-row"><div class="label">Valid Until</div><div class="value" id="showValidUntil">-</div></div>
+        </div>
+
+        <table class="amount-table">
+            <thead>
+                <tr><th>Particular</th><th>Amount</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Monthly Fees</td><td>₹ <span id="showMonthly">0.00</span></td></tr>
+                <tr><td>External Charge</td><td>₹ <span id="showExternal">0.00</span></td></tr>
+                <tr><td>Pending Fees</td><td>₹ <span id="showPending">0.00</span></td></tr>
+                <tr class="payable"><td>Total Payable Amount</td><td>₹ <span id="showTotal">0.00</span></td></tr>
+                <tr class="submitted"><td>Submitted Fees</td><td>₹ <span id="showSubmitted">0.00</span></td></tr>
+                <tr class="remaining"><td>Remaining Pending Fees</td><td>₹ <span id="showRemaining">0.00</span></td></tr>
+            </tbody>
+        </table>
+
+        <div class="payment-status" id="paymentStatus">PAYMENT STATUS</div>
+
+        <div class="signature-area">
+            <div class="teacher-signature">
+                <div class="signature-line"></div>
+                <strong>Teacher Signature</strong>
+                <span>Digital Fees Slip Signature not Required</span>
+            </div>
+        </div>
+
+        <div class="slip-footer">This is a digitally generated fees slip. Please keep it for your records.</div>
+    </section>
+
+    <button class="print-btn" id="printButton" type="button" onclick="window.print()">🖨 Print Fees Slip</button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
