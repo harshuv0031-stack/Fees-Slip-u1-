@@ -12,8 +12,10 @@
     <!-- FORM SECTION -->
     <section class="form-box">
         <div class="heading">
-            
-            <img src="logo.png" alt="H.A Coaching Centre Logo" class="permanent-logo">
+            <div class="logo-upload-wrap">
+                <img id="logoPreview" src="logo.jpg" alt="H.A Coaching Centre Logo" class="permanent-logo" onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';">
+                <div id="logoFallback" class="logo-fallback" aria-label="Logo placeholder">H.A</div>
+            </div>
             <h1>H.A Coaching Centre</h1>
             <p>Digital Fees Slip</p>
         </div>
@@ -75,8 +77,9 @@
     <section class="slip" id="feesSlip">
         <div class="slip-header">
             <div class="slip-brand">
-                <div class="slip-logo-wrap" id="slipLogoWrap" hidden>
-                    <img id="slipLogo" alt="Coaching Logo">
+                <div class="slip-logo-wrap" id="slipLogoWrap">
+                    <img id="slipLogo" src="logo.jpg" alt="H.A Coaching Centre Logo" onerror="this.style.display='none'; document.getElementById('slipLogoFallback').style.display='flex';">
+                    <div id="slipLogoFallback" class="slip-logo-fallback">H.A</div>
                 </div>
                 <div>
                     <h2>H.A Coaching Centre</h2>

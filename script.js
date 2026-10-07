@@ -24,24 +24,16 @@ function calculate(){
     $(id).addEventListener('input', calculate);
 });
 
-$('logoInput').addEventListener('change', function(){
-    const file = this.files && this.files[0];
-    if(!file) return;
-    if(!file.type.startsWith('image/')){
-        alert('Please select a valid image file for the logo.');
-        this.value = '';
-        return;
-    }
-    const reader = new FileReader();
-    reader.onload = function(e){
-        $('logoPreview').src = e.target.result;
-        $('logoPreview').hidden = false;
-        $('logoPlaceholder').style.display = 'none';
-        $('slipLogo').src = e.target.result;
-        $('slipLogoWrap').hidden = false;
-    };
-    reader.readAsDataURL(file);
-});
+function setPermanentLogo(){
+    const logo = $('slipLogo');
+    const fallback = $('slipLogoFallback');
+    if (!logo) return;
+    logo.src = 'logo.jpg';
+    logo.onload = () => { logo.style.display = 'block'; if (fallback) fallback.style.display = 'none'; };
+    logo.onerror = () => { logo.style.display = 'none'; if (fallback) fallback.style.display = 'flex'; };
+}
+
+setPermanentLogo();
 
 function formatDate(value){
     if(!value) return '-';
@@ -56,6 +48,7 @@ function generateSlip(){
     const date = $('date').value;
     const validUntil = $('validUntil').value;
     const values = calculate();
+    setPermanentLogo();
 
     if(!name){ alert("Please enter student's name."); $('studentName').focus(); return; }
     if(!roll){ alert('Please enter roll number.'); $('rollNo').focus(); return; }
@@ -99,11 +92,7 @@ function resetForm(){
     ['studentName','rollNo','monthlyFees','externalCharge','pendingFees','submittedFees'].forEach(id => $(id).value = '');
     $('date').valueAsDate = new Date();
     $('validUntil').valueAsDate = new Date();
-    $('logoInput').value = '';
-    $('logoPreview').src = '';
-    $('logoPreview').hidden = true;
-    $('logoPlaceholder').style.display = 'inline';
-    $('slipLogoWrap').hidden = true;
+    setPermanentLogo();
     $('feesSlip').style.display = 'none';
     $('printButton').style.display = 'none';
     calculate();
